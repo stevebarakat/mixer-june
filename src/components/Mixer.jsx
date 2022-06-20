@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   loaded,
   Player,
@@ -311,6 +311,7 @@ function Mixer({ song }) {
           return (
             <ChannelStrip
               key={track.path}
+              song={song}
               index={i}
               meterVal={meterVals[i]}
               channel={channels.current[i]}

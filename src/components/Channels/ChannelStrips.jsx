@@ -6,6 +6,7 @@ import { scale } from "../../utils/scale";
 
 function ChannelStrip({
   index,
+  song,
   track,
   tracks,
   handleSetTracks,
@@ -16,7 +17,7 @@ function ChannelStrip({
   toggleBusOne,
 }) {
   const [isMuted, setIsMuted] = useState(track.mute);
-  const [volume, setVolume] = useState(track.volume);
+  const [volume, setVolume] = useState(0);
   const preFader = meterVal;
   const postFader = meterVal + volume;
   const [isPostFader, setIsPostFader] = useState(true);
@@ -31,7 +32,7 @@ function ChannelStrip({
     const vol = Math.log(value + 101) / Math.log(113);
     const scaledVol = scale(vol, 0, 1, -100, 12);
 
-    setVolume(value);
+    setVolume(scaledVol);
     channel.set({ volume: scaledVol });
   }
 
@@ -161,8 +162,6 @@ function ChannelStrip({
         <input
           id={`${index}busOne${track.path}`}
           type="checkbox"
-          // onChange={toggleBusOne}
-          // checked={track.busOne}
           onChange={toggleBusOne}
         />
         <label className="label" htmlFor={`${index}busOne${track.path}`}>
