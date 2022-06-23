@@ -179,7 +179,7 @@ function Mixer({ song }) {
                 wet: 1,
               }).toDestination()
             );
-          i == 2 &&
+          i === 2 &&
             setBusOneFxTwoType(
               new Compressor({
                 wet: 1,
